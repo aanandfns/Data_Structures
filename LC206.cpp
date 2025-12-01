@@ -26,11 +26,11 @@ public:
         // or we can make a helper function to do the same by passing only head
         if(head == nullptr || head->next == nullptr) return head;
 
-        ListNode* newHead = reverseList(head->next);
+        ListNode* newHead = reverseList(head->next); // New Head of the Linked List
 
-        ListNode* front = head->next;
-        front->next = head;
-        head->next = nullptr;
+        ListNode* front = head->next; // Going front
+        front->next = head; // reversing the small part of the question
+        head->next = nullptr; // setting the end of the small part
         return newHead;
     }
 };
