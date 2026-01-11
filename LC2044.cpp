@@ -1,3 +1,4 @@
+// Straight Forward method 
 class Solution {
 public:
     void helper(vector<int>& nums, int i, vector<int>& temp, vector<vector<int>>& ans) {
@@ -34,5 +35,32 @@ public:
         }
 
         return cnt;
+    }
+};
+
+// a Bit Optimized ~ max value or OR will be the OR of all the elements in the array
+class Solution {
+public:
+    void helper(vector<int>& nums, int idx, int temp, vector<int>& vals) {
+        if(idx == nums.size()) {
+            vals.push_back(temp);
+            return;
+        }
+
+        helper(nums, idx+1, temp, vals);
+        temp |= nums[idx];
+        helper(nums, idx+1, temp, vals);
+    }
+
+    int countMaxOrSubsets(vector<int>& nums) {
+        vector<int> vals;
+        helper(nums, 0, 0, vals);
+        int ans = 0;
+        int x = *max_element(vals.begin(), vals.end());
+        for(int i=0; i<vals.size(); i++) {
+            if(vals[i] == x) ans++;
+        }
+
+        return ans;
     }
 };
